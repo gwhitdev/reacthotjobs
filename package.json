@@ -2,7 +2,7 @@
   "name": "reactjobsearch",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://indreed.herokuapp.com",
+  
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -24,6 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://indreed.herokuapp.com/",
   "eslintConfig": {
     "extends": [
       "react-app",
