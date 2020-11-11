@@ -8,7 +8,7 @@ const SearchForm = ({ searchForm, maxJobs, onSubmit, getJobs, setMax }) => {
         <div className="row ">
                   <form className="col s11 offset-s1 " onSubmit={onSubmit}>
                     <div className="row ">
-                      <div className="input-field col s6">
+                      <div className="input-field col s12 m6">
                       <i class="material-icons prefix">create</i>
                         <input 
                           name="searchField"
@@ -19,7 +19,7 @@ const SearchForm = ({ searchForm, maxJobs, onSubmit, getJobs, setMax }) => {
                         />
                         <label htmlFor="search field"className="active">Search jobs</label>
                       </div>
-                      <div className="input-field col s3">
+                      <div className="input-field col s12 m3 center-align">
                       
                         <input
                           name="maxJobs"
@@ -33,7 +33,7 @@ const SearchForm = ({ searchForm, maxJobs, onSubmit, getJobs, setMax }) => {
                       </div>
                     
                     
-                    <div className="input-field col s3 ">
+                    <div className="input-field col s12 m3 ">
                       <button type="submit"className="btn waves-effect waves-light amber">Search <i className="material-icons right">whatshot</i></button>
                     </div>
                     </div>
