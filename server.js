@@ -10,16 +10,20 @@ const environment = process.env.NODE_ENV || 'dev';
 
 app.use(cors());
 
-app.get('/search/:jobs/:max', async (req, res) => {
+app.get('/search/:jobs/:max', (req, res) => {
     const jobs = req.params.jobs;
     const max = req.params.max;
     console.log(`jobs received: ${jobs}
     max received: ${max}`);
     
 
-    await axios(`https://indreed.herokuapp.com/api/jobs?q=${jobs}&l=England&country=UK&max=${max}`)
+    axios(`https://indreed.herokuapp.com/api/jobs?q=${jobs}&l=England&country=UK&max=${max}`)
         .then(response => response.data)
-        .catch(error => console.error(error))
+        .catch(error => {
+          console.error(error);
+          data = 'Sorry. No data was received, please try again.';
+          res.send(data)
+        })
         .then(data => res.send(data))
 
         
