@@ -4,9 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run nodemon\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -17,11 +20,9 @@
   "bugs": {
     "url": "https://github.com/gwhitdev/reacthotjobs/issues"
   },
-  "homepage": "https://github.com/gwhitdev/reacthotjobs#readme",
   "dependencies": {
     "axios": "^0.21.0",
     "cors": "^2.8.5",
-    "enforce": "^0.1.7",
     "express": "^4.17.1",
     "express-sslify": "^1.2.0",
     "nodemon": "^2.0.6",
