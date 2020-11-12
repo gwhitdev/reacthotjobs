@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 import JobsList from './Components/JobsList/JobsList.component';
 import Loading from './Components/Loading/Loading.component';
 import SearchForm from './Components/SearchForm/SearchForm.component';
@@ -11,7 +11,7 @@ import './App.css';
 
 
 class App extends React.Component {
-  
+
   fetchJobs = async (e) => {
     e.preventDefault();
 
@@ -19,15 +19,21 @@ class App extends React.Component {
 
     toggleLoading();
 
-    let url = `https://indreed.herokuapp.com/api/jobs?q=${searchForm}&l=England&country=uk&max=${maxJobs}`;
+    //let url = `api/jobs?q=${searchForm}&l=England&country=uk&max=${maxJobs}`;
+    let url = `/search/${searchForm}/${maxJobs}`;
+
     console.log(url);
-    await fetch(url)
-      .then((response) => response.json())
-      .then(jobs => {setJobs(jobs)})
-      .catch((error) => {
-        console.log(error);
+    await axios.get(url)
+      .then((res) => {
+        console.log(res);
+        if (res.data === null || res.data === undefined) {
+          console.error('data is null or undefined')
+        } else {
+          setJobs(res.data)
+          toggleLoading();
+        }
       })
-      .then(() => toggleLoading())
+      .catch(err => console.error(err))
       
   }
 
