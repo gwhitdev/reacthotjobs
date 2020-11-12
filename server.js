@@ -36,4 +36,4 @@ if (environment !== 'dev') {
     });
   }
 
-app.listen(process.env.PORT || port, (req, res) => console.log('Listening on ', port));
+app.listen(process.env.PORT || port, () => console.log('Listening on ', port));
