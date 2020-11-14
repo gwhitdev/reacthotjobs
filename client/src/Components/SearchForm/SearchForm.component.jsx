@@ -14,7 +14,7 @@ const SearchForm = ({ searchForm, maxJobs, onSubmit, getJobs, setMax }) => {
                           name="searchField"
                           type="search"
                           value={searchForm}
-                          onChange={(e) => getJobs(e.target.value)}
+                          onChange={(e) => getJobs(e.target.value.replace(/[^\w\s]/gi,''))}
                           
                         />
                         <label htmlFor="search field"className="active">Search jobs</label>

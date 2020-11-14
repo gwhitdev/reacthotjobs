@@ -20,29 +20,46 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({msg: false});
 
-    if (searchForm && maxJobs) {
-      //console.log('boolean searhForm', Boolean(searchForm));
-      //console.log('state error:', this.state.msg);
-      this.fetchJobs(e);
-      return this.setState({msg: false});
-    } else {
-      //console.log('boolean searchForm', Boolean(searchForm));
-      //console.log('state error:',this.state.msg);
-      //console.log('Triggered false');
-      return this.setState({msg: true});    
-    }
-  }
+      let searchStr = searchForm;
+      //let confirmStr = searchStr.search(/[^A-Za-z0-9]\s+/g);
+      //let replacedStr = searchStr.replace(/[^\w\s]/gi, '');
+      let maxStr = maxJobs;
+      //let replacedMax = maxStr.replace(/[^\d\s]/gi, '');
+console.log(searchStr,maxStr);
+      if (searchForm && maxJobs) {
+        this.fetchJobs(searchForm,maxJobs);
+        return this.setState({msg: false});
+      } else {
+        return this.setState({msg: true});
+      }
+      /*
+      console.log('1 str:',confirmStr);
+      console.log('1 num:',confirmMax);
+if (searchForm && maxJobs) {
+  if (confirmStr === -1 && confirmMax === 0) {
+    console.log('2 str:',confirmStr);
+    console.log('2 num:',confirmMax);
+    this.fetchJobs(e);
+    this.setState({msg: false});
+  } else {
+    return this.setState({msg: true});    
+  } } else {
+  return this.setState({msg: true});    
+}*/
+   
+}
 
   componentDidMount() {
    
   }
 
-  fetchJobs =  (e) => {
+  fetchJobs =  (replacedStr, replacedMax) => {
     const { toggleLoading, searchForm, maxJobs, setJobs } = this.props;
-    
-    e.preventDefault();
+    console.log(replacedStr, replacedMax);
+    //e.preventDefault();
     toggleLoading();
-    let url = `/search/${searchForm}/${maxJobs}`;
+    let url = `/search/${replacedStr}/${replacedMax}`;
+    console.log(url);
     axios.get(url)
       .then((res) => {
         console.log(res);
